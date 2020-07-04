@@ -1,4 +1,4 @@
-# raspberrypi4
+# ROS Services, Actions, Publishers and Subscribers for Raspberry Pi 4, ROS Melodic oriented to Servos and robot arms
 ROS services, actions, publishers and subscribers build over a RBPi 4, using Python and C++
 
 I'm building some stuff based on servos controlled by a PCA9685 connected to a Raspberry Pi running ROS Melodic. The ROS server is an nvidia Jetson Xavier AGX, but could be any board or virtual machine.
