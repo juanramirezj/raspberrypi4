@@ -1,0 +1,10 @@
+#goal
+int8 servo_num
+float32 goal_angle
+float32 step_angle
+---
+#result
+bool success
+---
+#feedback
+float32 current_angle
