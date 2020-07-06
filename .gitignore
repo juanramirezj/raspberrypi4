@@ -1,1 +1,10 @@
 build/
+bin/
+lib/
+msg_gen/
+srv_gen/
+cmake_install.cmake
+.cproject
+.project
+.pydevproject
+

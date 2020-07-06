@@ -3,9 +3,9 @@ import rospy
 from adafruit_servokit import ServoKit
 import time
 import actionlib
-from plotter2dof.msg import ServoActionCustomMessageActionFeedback
-from plotter2dof.msg import ServoActionCustomMessageActionResult
-from plotter2dof.msg import ServoActionCustomMessageActionAction
+from servo_msgs.msg import ServoActionMsgActionFeedback
+from servo_msgs.msg import ServoActionMsgActionResult
+from servo_msgs.msg import ServoActionMsgAction
 # goal
 #   int8 servo_num
 #   float32 goal_angle

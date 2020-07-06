@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-   <node pkg="plotter2dof"
+   <node pkg="servo_action_server"
          type="servo_action_server.py"
          name="servo_action"
          output="screen" />     
