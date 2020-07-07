@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 import rospy
-from adafruit_servokit import ServoKit
+#from adafruit_servokit import ServoKit
 import time
 import actionlib
 from servo_msgs.msg import ServoActionMsgActionFeedback
