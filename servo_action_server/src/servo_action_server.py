@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 import rospy
 import actionlib
+from std_msgs.msg import Int32MultiArray
 #from adafruit_servokit import ServoKit
 import time
 #el nombre del import viene del nombre del archivo que se deja en el foldel action del pkg servo_msgs 
@@ -22,6 +23,19 @@ from servo_msgs.msg import ServoActionMsgAction
 #kit.servo[0].set_pulse_width_range(500,2500)
 #kit.servo[1].set_pulse_width_range(500,2500)
 
+def degrees2control(angle):
+    #constants
+    f = 50 #Hz
+    min_pwm = 500  #0 degrees
+    max_pwm = 2500 #180 degrees
+
+    #calculations
+    m = (max_pwm - min_pwm) / (180-0)
+    n = max_pwm - m*180
+    pulse = m*angle + n  #micro seconds
+    control = pulse * f * 65536 / 1000000
+    return int(control)
+
 class ServoClass(object):
     # create messagesthat are used to publish feedback/result
     # rosmsg list | grep plotter2dof
@@ -42,12 +56,24 @@ class ServoClass(object):
         r = rospy.Rate(1)
         success = True
 
+        #define the different publishers and messages that ill be used
+        #rospy.init_node('topic_publisher')
+        self._pub_command = rospy.Publisher('/command', Int32MultiArray, queue_size=1)
+        self._command = Int32MultiArray()
+        rate = rospy.Rate(2)
+        self._command.data = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+
+
+
         #Starts with the movement
-        rospy.loginfo('"server_as": Executing, moving server to %i degrees' % (goal.goal_angle))
+        rospy.loginfo('"server_as": Executing, moving SERVO to %i degrees' % (goal.goal_angle))
 
         #starts moving to the origin
         #kit.servo[0].angle = 0 
-        for angle in range(0, goal.goal_angle,1):
+        self._command.data[0] = degrees2control(0)
+        self._pub_command.publish(self._command)
+        
+        for angle in range(0, int(goal.goal_angle),1):
            # check that preempt (cancelation) has not been requested by the action client
            if self._as.is_preempt_requested():
                respy.loginfo('The golad has been cancelled/preempted')
@@ -56,6 +82,9 @@ class ServoClass(object):
                success = False
                # we end the movement of the server
                break
+
+           self._command.data[0] = degrees2control(angle)
+           self._pub_command.publish(self._command)
            #builds the next feedback msg to be send
            self._as.publish_feedback( self._feedback)
            # the movement is computed at 1Hz frequency
