@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-   <node pkg="servo_action_server"
+  <node name="pca9685_subscriber"
+         pkg="pwm_pca9685"
+         type="pca9685_node"
+	   output="screen">
+
+	   <param name="device" value="/dev/i2c-1"/>
+	   <param name="frequency" value="50"/>
+	   <param name="pwm_min" value="1640"/>
+	   <param name="pwm_max" value="8190"/>
+	   #formulas
+	   #pwm [uS] = (1000000 * command_value) / (f*65536)
+	   #command_value = (pwm[uS] * f * 65536)/1000000
+  </node>
+
+  <node pkg="servo_action_server"
          type="servo_action_server.py"
          name="servo_action"
          output="screen" />     
