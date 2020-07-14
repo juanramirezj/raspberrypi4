@@ -1,7 +1,9 @@
 #! /usr/bin/env python
 import rospy
 import actionlib
+import RPi.GPIO as GPIO
 from std_msgs.msg import Int32MultiArray
+
 #from adafruit_servokit import ServoKit
 import time
 #el nombre del import viene del nombre del archivo que se deja en el foldel action del pkg servo_msgs 
