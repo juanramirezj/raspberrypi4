@@ -1,0 +1,10 @@
+pca9685_subscriber: {device: /dev/i2c-1, frequency: 50, pwm_max: 8190, pwm_min: 1640}
+rosdistro: 'melodic
+
+  '
+roslaunch:
+  uris: {host_192_168_0_135__39903: 'http://192.168.0.135:39903/', host_jetson_xavier__38307: 'http://jetson-xavier:38307/'}
+rosversion: '1.14.6
+
+  '
+run_id: 3cfc79ea-c786-11ea-84c3-00044be5a08b

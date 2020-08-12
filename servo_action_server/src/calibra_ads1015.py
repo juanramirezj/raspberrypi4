@@ -58,7 +58,7 @@ class Calibra:
     def mueve_servo(self, puerto, angulo):
         self.cmd.data[puerto] = self.degrees2control(angulo)
         self.pub.publish( self.cmd)
-        rospy.sleep(1)
+        rospy.sleep(1.5)
         self.cmd.data[puerto] = -1
         f = self.lee_feedback(puerto,1)
         return f
