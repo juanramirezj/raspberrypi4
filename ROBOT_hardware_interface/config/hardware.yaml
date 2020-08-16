@@ -1,6 +1,0 @@
-ROBOT:
-  hardware_interface:
-     loop_hz: 10 # hz
-     joints:
-       - link_01_name__link_02_name
-       - link_02_name__link_03_name

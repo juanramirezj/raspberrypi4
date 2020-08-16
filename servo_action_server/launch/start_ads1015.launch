@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+   <node name="ads1015_publisher"
+         pkg="servo_action_server"
+         type="pub_ads1015.py"
+           output="screen">
+   </node>
+</launch>
+
